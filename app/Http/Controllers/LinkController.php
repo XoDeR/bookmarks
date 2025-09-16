@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class LinkController extends Controller
@@ -14,9 +15,18 @@ class LinkController extends Controller
      */
     public function index()
     {
+        $searchString = Request::get('search') ?? '';
+        $filteredTags = Request::get('tags') ?? '';
+        $showUntaggedOnly = Request::get('untaggedOnly') ?? false;
+        $filteredTags = empty($filteredTags) ? [] : explode(',', $filteredTags);
+
         $perPage = 10;
         return Inertia::render('Links/Index', [
             'links' => Link::orderBy('created_at', 'desc')->paginate($perPage),
+
+            'searchString' => $searchString,
+            'filteredTags' => $filteredTags ? TagController::getTagsByNames($filteredTags) : [],
+            'showUntaggedOnly' => $showUntaggedOnly,
         ]);
     }
 
