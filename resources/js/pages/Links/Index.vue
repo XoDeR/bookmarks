@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LinkListWithTagFilter from '@/components/LinkList/LinkListWithTagFilter.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Link, PaginatedResponse } from '@/types';
 
@@ -23,11 +24,7 @@ console.log(props.showUntaggedOnly);
 
 <template>
   <AppLayout>
-    <ul>
-      <li v-for="link in links.data">
-        <span>{{ link.title }}</span>
-        <span>{{ link.link }}</span>
-      </li>
-    </ul>
+    <LinkListWithTagFilter :links="links.data" :searchString="searchString" :filteredTags="filteredTags"
+      :showUntaggedOnly="showUntaggedOnly" />
   </AppLayout>
 </template>
