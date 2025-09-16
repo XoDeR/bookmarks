@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@/types';
-
+import LinkList from './LinkList.vue';
 
 interface Props {
   links: Link[];
@@ -19,10 +19,5 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <ul>
-    <li v-for="link in links">
-      <span>{{ link.title }}</span>
-      <span>{{ link.link }}</span>
-    </li>
-  </ul>
+  <LinkList :links="links" :searchString="searchString" />
 </template>

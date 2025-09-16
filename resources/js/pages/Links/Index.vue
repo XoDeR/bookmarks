@@ -16,10 +16,10 @@ const props = withDefaults(defineProps<LinksPageProps>(), {
   showUntaggedOnly: false,
 })
 
-console.log(props.links);
-console.log(props.searchString);
-console.log(props.filteredTags);
-console.log(props.showUntaggedOnly);
+// console.log(props.links);
+// console.log(props.searchString);
+// console.log(props.filteredTags);
+// console.log(props.showUntaggedOnly);
 </script>
 
 <template>
