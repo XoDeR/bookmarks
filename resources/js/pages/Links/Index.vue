@@ -3,12 +3,22 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Link, PaginatedResponse } from '@/types';
 
 interface LinksPageProps {
-  links: PaginatedResponse<Link>
+  links: PaginatedResponse<Link>;
+  searchString: string;
+  filteredTags: string[];
+  showUntaggedOnly: boolean;
 }
 
-const props = defineProps<LinksPageProps>();
+const props = withDefaults(defineProps<LinksPageProps>(), {
+  searchString: '',
+  filteredTags: () => [],
+  showUntaggedOnly: false,
+})
 
 console.log(props.links);
+console.log(props.searchString);
+console.log(props.filteredTags);
+console.log(props.showUntaggedOnly);
 </script>
 
 <template>
