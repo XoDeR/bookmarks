@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
+use Inertia\Inertia;
 
 class LinkController extends Controller
 {
@@ -13,7 +14,10 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+        $perPage = 10;
+        return Inertia::render('Links/Index', [
+            'links' => Link::orderBy('created_at', 'desc')->paginate($perPage),
+        ]);
     }
 
     /**

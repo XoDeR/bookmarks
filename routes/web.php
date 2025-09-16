@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        // return to_route('links.index');
-        return Inertia::render('Dashboard');
+        return to_route('links.index');
     })->name('home');
+
+    Route::resource('links', LinkController::class)->except([
+        'create', 'edit',
+    ]);
 });
 
 // Route::get('/', function () {
